@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/_mainLayout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Nuevo asignacion</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Crear nueva asignacion de Docente-Grupo</h1>
+    <form th:action="@{/asignaciones/save}" th:object="${asignaciones}" method="post">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="docente">Docente:</label>
+                <select id="docente" name="docenteId" class="form-control" required>
+                    <option th:each="docente : ${docentes}" th:value="${docente.id}" th:text="|${docente.nombre} ${docente.apellido}|"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="grupo">Grupo:</label>
+                <select id="grupo" name="grupoId" class="form-control" required>
+                    <option th:each="grupo : ${grupos}" th:value="${grupo.id}" th:text="${grupo.nombre}"></option>
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="anio">Anio</label>
+                    <input type="text" class="form-control" id="anio" name="anio" placeholder="Escribe el anio del estudiante" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="ciclo">Ciclo</label>
+                    <input type="text" class="form-control" id="ciclo" name="ciclo" placeholder="Escribe el ciclo del estudiante" required>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/asignaciones}" class="btn btn-outline-secondary">Regresar</a>
+    </form>
+</div>
+</body>
+</html>
